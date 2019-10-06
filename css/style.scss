@@ -1,0 +1,1557 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+html{
+    max-width: 100%;
+    scroll-behavior: smooth;
+    font-family: 'Roboto', sans-serif;
+}
+
+$f: flex;
+$sa: space-around;
+$sb: space-between;
+$c: center;
+$co: column;
+$fw: wrap;
+
+$d0: 1200px;
+$d1: 992px;
+$d2: 768px;
+$d3: 576px;
+$d4: 480px;
+$d5: 380px;
+
+@mixin d0 {
+    @media (max-width: #{$d0}){
+        @content;
+    }
+}
+
+@mixin d1 {
+    @media (max-width: #{$d1}){
+        @content;
+    }
+}
+
+
+@mixin d2 {
+    @media (max-width: #{$d2}){
+        @content;
+    }
+}
+
+@mixin d3 {
+    @media (max-width: #{$d3}){
+        @content;
+    }
+}
+
+@mixin d4 {
+    @media (max-width: #{$d4}){
+        @content;
+    }
+}
+
+@mixin d5 {
+    @media (max-width: #{$d5}){
+        @content;
+    }
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    
+
+//Navigacija
+
+    nav{
+        position: fixed;
+        width: 100%;
+        top: 0px;
+        background: transparent;
+        z-index: 999;
+        display: $f;
+        justify-content: $sa;
+        align-items: $c;
+        padding: 3% 0%;
+        transition: .6s;
+
+        .left{
+
+            a{
+                background: linear-gradient(279deg, #eb2e13, #cd3520, #e37b44);
+                background-size: 600% 600%;
+                animation: anima 3s ease infinite;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: bold;
+                font-size: 2.5em;
+                letter-spacing: 10px;
+
+                @include d1{
+                    font-size: 2.2em;
+                }
+
+                @include d2{
+                    font-size: 2.5em;
+                }
+
+                @include d5{
+                    font-size: 2.2em;
+                }
+            }
+        }
+
+        .right{
+            width: 60%;
+            height: 100%;
+            display: $f;
+            justify-content: $c;
+            align-items: $c;
+
+            @include d1{
+                width: 65%;
+            }
+
+            @include d2{
+                display: none;
+            }
+
+            ul{
+                list-style-type: none;
+                width: 100%;
+                height: 100%;
+                margin-bottom: 0px;
+                display: $f;
+                justify-content: $sa;
+                align-items: $c;
+
+                li{
+
+                    a{
+                        text-decoration: none;
+                        font-size: 1.3em;
+                        color: whitesmoke;
+                        transition: .6s;
+                        position: relative;
+
+                        &:hover{
+                            color: #fb9224;
+                        }
+
+                        &:before,&:after{
+                            height: 14px;
+                            width: 14px;
+                            position: absolute;
+                            content: '';
+                            transition: all 0.35s ease;
+                            opacity: 0;
+                        }
+    
+                        &:before{
+                            left: -15%;
+                            top: -15%;
+                            border-left: 3px solid #fb9224;
+                            border-top: 3px solid #fb9224;
+                            transform: translate(100%, 50%);
+                        }
+    
+                        &:after{
+                            right: -15%;
+                            bottom: -15%;
+                            border-right: 3px solid #fb9224;
+                            border-bottom: 3px solid #fb9224;
+                            transform: translate(-100%, -50%);
+                        }
+    
+                        &:hover:before,&:hover:after{
+                            transform: translate(0%, 0%);
+                            opacity: 1;
+                        }
+    
+                        &:hover{
+                            color: lighten(#fb9224,5%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+// Kraj navigacije
+
+// Side nav 
+
+.side{
+    width: 100%;
+    height: 100%;
+    background-color: #141414;
+    display: $f;
+    justify-content: $c;
+    align-items: $c;
+    position: fixed;
+    top: -2000px;
+    transition: all 1s;
+    z-index: 999;
+
+    ul{
+        list-style-type: none;
+
+        li{
+            margin: 10% 0%;
+            text-align: $c;
+
+            a{
+                text-decoration: none;
+                color: whitesmoke;
+                font-family: monospace;
+                font-size: 2em;
+                text-shadow: 1.3px 1.3px rgb(226, 47, 34);
+            }
+
+            .clos{
+                color: rgb(202, 20, 20);
+                font-size: 1.5em;
+                animation: uper 3s ease infinite;
+            }
+        }
+    }
+}
+
+.side1{
+    top: 0px;
+}
+
+.trigger{
+    position: fixed;
+    display: none;
+    z-index: 999;
+    text-decoration: none;
+    position: fixed;
+    top: 25px;
+    right: 30px;
+
+    @include d2{
+        display: block;
+    }
+
+    @include d4{
+        right: 20px;
+    }
+
+    @include d5{
+        top: 20px;
+    }
+
+    i{
+        color: whitesmoke;
+        font-size: 2em;
+        transition: .6s;
+
+        @include d5{
+            font-size: 1.6em;
+        }
+
+        &:hover{
+            color: rgb(209, 33, 33);
+        }
+    }
+}
+
+// Kraj side nava
+
+// Pocetak maina
+
+    .contMain{
+        width: 100%;
+        height: 100vh;
+        display: $f;
+        background: #141414;
+        justify-content: $c;
+        align-items: $c;
+        position: relative;
+        
+
+        .centerMain{
+            text-align: center;
+            position: absolute;
+            align-self: $c;
+
+            h1{
+                color: #fff;
+                font-size: 65px;
+                font-weight: normal;
+                line-height: 60px;
+                margin: 10px 0 20px;
+                
+                @include d1{
+                    font-size: 3em;
+                }
+
+                @include d4{
+                    font-size: 2.6em;
+                }
+
+                @include d5{
+                    font-size: 2.3em;
+                }
+
+                span{
+                    background: linear-gradient(279deg, #eb2e13, #cd3520, #e37b44);
+                    background-size: 600% 600%;
+                    animation: anima 3s ease infinite;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    font-weight: bold;
+                  /*  border:3px solid #fb9224;
+                    padding:4px 6px;
+                    border-radius:5px;
+                    background-color: #fb9224; */
+                }
+            }
+
+            h2{
+                color: whitesmoke;
+                padding: 5% 0% 10% 0%;
+
+                @include d4{
+                    font-size: 1.4em;
+                }
+            }
+
+            .up{
+                background: none;
+                background: #141414;
+                text-decoration: none;
+                border: 4px solid #fb9224;
+                border-radius: 40px;
+                color: #fb9224;
+                padding: 4% 10%;;
+                transition: .5s;
+                font-weight: bold;
+                font-size: 1.5em;
+
+                @include d1{
+                    padding: 2% 8%;
+                }
+
+                @include d5{
+                    padding: 4% 12%;
+                }
+
+                            &:hover,
+                            &:focus { 
+                              border-color: transparent;
+                              color: whitesmoke;
+                              box-shadow: inset 0 -4.80em 0 0 #fb9224;
+                            }
+            }
+        }
+    }
+}
+
+// Kraj maina
+
+// Pocetak about-a
+
+body{
+
+    .secAbout{
+        width: 100%;
+        background: #141414;
+        padding: 5% 0% 1% 0%;
+        background-image: url("../images/background2.png"); 
+
+        .contAbout{
+            margin: 5% auto;
+            
+            .howParagraf{
+                font-size:1.7em;
+                color:whitesmoke; 
+            }
+            .rowAbout0{
+                margin-bottom:5%;
+
+                @include d0{
+                    margin: 5% 0% 10% 0%;
+                }
+
+                
+                .colAbout0{
+                    display:$f;
+                    justify-content: $c;
+                    align-items: $c;
+                    
+                    .rowInner{
+                        margin: 5% 0%;
+                        display: $f;
+                        justify-content: $c;
+                        align-items: $c;
+
+                        .far{
+                            color:#fb9224;
+                        }
+
+                        p{
+                            color:whitesmoke;
+
+                            @include d1{
+                                text-align: $c;
+                            }
+
+                        }
+
+                        .pravo{
+                            border-radius:5px;
+                            background-color: #fb9224;
+                            display: $f;
+                            justify-content: $c;
+                            align-items: $c;
+                            width: 90%;
+                            padding:15px 0px 10px 0px;
+                            margin-bottom:20px;
+    
+                            h4{
+                                font-weight: bold;
+                                color:whitesmoke;
+                                
+                            }
+                        }
+                    }
+                    
+                }
+            }
+                
+                .rowAbout{
+                    margin-bottom:6%;
+
+                    @include d0{
+                        margin-bottom: 10%;
+                    }
+
+
+                    .colAbout{
+                        display: $f;
+                        width: 100%;
+                        flex-direction: $co;
+                        justify-content: space-around;
+                        align-items: $c;
+                        text-align: $c;
+                        
+                        h3{
+                            color: #fb9224;
+                            font-size: 45px;
+                            font-weight: normal;
+                            font-weight:bold;
+                            line-height: 60px;
+                            padding-bottom: 5%;
+                            
+                            @include d5{
+                                font-size: 2em;
+                            }
+                        }
+
+                        p{
+                            color: #141414;
+                            font-family: arial;
+                            font-size: 1.3em;
+                            line-height: 25px;
+                            color: whitesmoke;
+                            text-align: justify;
+
+                            @include d2{
+                                padding-bottom: 10%;
+                            }
+                            
+                            @include d5{
+                                font-size: 1em;
+                            }
+                        }
+                    }
+
+                    .colAbout1{
+                        display: $f;
+                        justify-content: $c;
+                        align-items: $c;
+
+                        img{
+                            max-width: 100%;
+                            height: auto;
+                        }
+                    }
+                    
+                }
+
+                .vision{
+                    padding: 10% 0%;
+                }
+
+                .howParagraf{
+
+                    @include d2{
+                        font-size: 1.4em;
+                    }
+
+                    @include d5{
+                        font-size: 1.1em;
+                    }
+                }
+
+                .rowAbout1{
+                    display: $f;
+                    justify-content: $c;
+                    align-items: $c;
+                    margin: 5% 0%;
+
+                    .colChange{
+                        display: $f;
+                    }
+                    
+
+                    .colAbout2{
+                        display: $f;
+                        justify-content: $c;
+
+                        &:nth-child(2){
+                            position: relative;
+
+                            &:before{
+                                content: '';
+                                position: absolute;
+                                width: 25%;
+                                height: 5px;
+                                background: whitesmoke;
+                                top: 50%;
+                                left: -45px;
+
+                                @include d1{
+                                    left: 0%;
+                                }
+
+                                @include d5{
+                                    top: 30%;
+                                }
+                            }
+
+                            &:after{
+                                content: '';
+                                position: absolute;
+                                width: 25%;
+                                height: 5px;
+                                background: whitesmoke;
+                                top: 50%;
+                                right: -45px;
+
+                                @include d1{
+                                    right: 0%;
+                                }
+
+                                @include d5{
+                                    top: 30%;
+                                }
+                            }
+                        }
+
+                        .c1{
+                            //width: 250px;
+                            //height: 250px;
+                            //border-radius: 50%;
+                            //border: 4px solid whitesmoke;
+                            display: $f;
+                            justify-content: $c;
+                            align-items: $c;
+                            flex-direction:column;
+
+                            @include d2{
+                                margin: 5% 0%;
+                            }
+
+                            @include d3{
+                                margin: 8% 0%;
+                            }
+
+                            h4{
+                                padding-top:20px;
+                                color:#fb9224;
+                                
+                            }
+
+                            p{
+                                color:whitesmoke;
+                            }
+
+                            img{
+                                max-width: 100%;
+                                height: auto;
+
+                                @include d5{
+                                    width: 30%;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .speci{
+                    font-size: 2.3em;
+                    padding-bottom: 5%;
+
+                    @include d4{
+                        font-size: 1.9em;
+                    }
+
+                    @include d5{
+                        font-size: 1.3em;
+                    }
+                }
+
+        }
+    }
+}
+
+h3{
+    color: #fb9224;
+    font-size: 45px;
+    font-weight: normal;
+    font-weight:bold;
+    line-height: 60px;
+    margin: 10px 0 20px;
+    text-align:center;
+}
+
+// What do you get
+
+body{
+
+    .get{
+        background: #141414;
+        background-image:url("../images/background2.png");
+        padding: 2% 0% 5% 0%;
+
+        .contGet{
+
+            h3{
+
+                @include d2{
+                    font-size: 2.6em;
+                }
+
+                @include d3{
+                    font-size: 2.2em;
+                }
+
+                @include d4{
+                    font-size: 2em;
+                }
+            }
+            
+            .howParagraf{
+                font-size:1.7em;
+                color:whitesmoke;
+
+                @include d0{
+                    font-size: 1.4em;
+                }
+
+                @include d2{
+                    padding: 5% 0%;
+                }
+
+                @include d3{
+                    font-size: 1.2em;
+                }
+                
+            }
+
+            .rowGet1{
+                margin: 5% 0%;
+                display: $f;
+                justify-content: $c;
+                align-items: $c;
+
+
+                .cardH{
+                    color:whitesmoke;
+                    font-size:1.7em;
+
+                    @include d4{
+                        font-size: 1.3em;
+                    }
+
+                    @include d5{
+                        font-size: 1em;
+                    }
+                }
+                
+                .colGet1{
+                    
+                    .static{
+                        border-radius: 10px;
+                        padding: 0.6%;
+                        background: linear-gradient(270deg, #f42626, #cf3737, #e17d30, #f66f07, #f44d4d);
+                        background-size: 1000% 1000%;
+                        -webkit-animation: anima1 3s ease infinite;
+                        -moz-animation: anima1 3s ease infinite;
+                        animation: anima1 3s ease infinite;
+                        transition: .6s;
+                        position: relative;
+                        display: $f;
+
+                        @include d1{
+                            margin: 5% 0%;
+                        }
+                        
+
+
+                        .staticLeft{
+                            background-image: linear-gradient(315deg, #fb9224 0%,#FD6A33 74%);
+                            position: absolute;
+                            display: $f;
+                            flex-direction: $co;
+                            justify-content: $sa;
+                            align-items: $c;
+                            width: 50%;
+                            height: 70%;
+                            border-radius: 8px;
+                            top: 15%;
+                            left: -10%;
+
+                            @include d0{
+                                left: -7%;
+                            }
+
+                            @include d1{
+                                width: 45%;
+                                left: -5%;
+                            }
+
+                            @include d3{
+                                width: 50%;
+                            }
+
+                            @include d4{
+                                height: auto;
+                                top: 20%;
+                            }
+
+                            @include d5{
+                                top: 20%;
+                                width: 55%;
+                                left: -8%;
+                            }
+
+
+                            h3{
+                                color: whitesmoke;
+                                font-size: 1.5em;
+
+                                @include d4{
+                                    font-size: 1.3em;
+                                }
+
+                                @include d5{
+                                    font-size: 1.1em;
+                                }
+                            }
+    
+                            p{
+                                color: whitesmoke;
+                                text-align: $c;
+                                font-weight: bold;
+
+                                @include d4{
+                                    font-size: .9em;
+                                }
+
+                                @include d5{
+                                    font-size: .8em;
+                                }
+                            }
+
+                            i{
+                                background: linear-gradient(346deg, #d4dc3e, #eaf422, #e9af2b, #efd734);
+                                background-size: 800% 800%;
+                                -webkit-animation: anima2 3s ease infinite;
+                                -moz-animation: anima2 3s ease infinite;
+                                animation: anima2 3s ease infinite;
+                                font-size: 3em;
+                                -webkit-background-clip: text;
+                                -webkit-text-fill-color: transparent;
+
+                                @include d4{
+                                    font-size: 2em;
+                                    padding-bottom: 13%;
+                                }
+                            }
+
+                            .gear{
+                                background: linear-gradient(346deg, #531717, #6b2727, #2b1a1f, #4d0d05);
+                                background-size: 800% 800%;
+                                -webkit-animation: anima2 3s ease infinite;
+                                -moz-animation: anima2 3s ease infinite;
+                                animation: anima2 3s ease infinite;
+                                font-size: 3em;
+                                -webkit-background-clip: text;
+                                -webkit-text-fill-color: transparent;
+                                animation: rot 5s infinite;
+                            }
+                            
+                        }
+
+                        .stat1{
+                            padding: 5%;
+                            border-radius:10px;
+                            display: $f;
+                            justify-content: $c;
+                            align-items: flex-end;
+                            flex-direction: $co;
+                            background-color: #ff4e00;
+                            background-image: linear-gradient(315deg, #fb9224 0%,#FD6A33 74%);
+                            height: 550px;
+                            background: #141414;
+                            width: 100%;
+                            display: $f;
+
+                            @include d4{
+                                height: 450px;
+                            }
+
+                            .righter{
+                                width: 50%;
+                                height: 100%;
+                                display: $f;
+                                flex-direction: $co;
+                                justify-content: $sa;
+                                align-items: $c;
+
+                                @include d4{
+                                    justify-content: $c;
+                                }
+
+
+                                .prices{
+                                    width: 90%;
+                                    margin: 0px auto;
+                                    display: $f;
+                                    flex-direction: $co;
+                                    justify-content: $c;
+                                    align-items: $c;
+
+                                    .priceBox{
+                                        width: 100%;
+                                        display: $f;
+                                        justify-content: $sb;
+                                        border-bottom: 3px solid whitesmoke;
+                                        border-radius: 2px;
+                                        margin: 3% 0%;
+
+                                        p{
+                                            margin: 0px;
+                                            color: whitesmoke;
+                                            padding: 2% 0%;
+                                        }
+                                    }
+                                }
+
+                                .kontStat{
+                                    background: none;
+                                    background: #141414;
+                                    text-decoration: none;
+                                    border: 2px solid #fb9224;
+                                    border-radius: 40px;
+                                    color: #fb9224;
+                                    padding: 4% 10%;;
+                                    transition: .5s;
+                                    font-weight: bold;
+                                    font-size: 1.2em;
+
+                                    @include d3{
+                                        margin-top: 10%;
+                                    }
+
+                                    @include d4{
+                                        padding: 6% 12%;
+                                    }
+
+                                    @include d5{
+                                        padding: 4% 9%;
+                                        font-size: 1em;
+                                    }
+
+                                    &:hover,
+                                    &:focus { 
+                                    border-color: transparent;
+                                    color: whitesmoke;
+                                    box-shadow: inset 0 -4.80em 0 0 #fb9224;
+                                    }
+                                }
+                            }
+
+
+                    }
+                    }
+
+                    .inter{
+                        transition: .6s;
+                        position: relative;
+
+                        .staticRight{
+                            background-image: linear-gradient(315deg, #fb9224 0%,#FD6A33 74%);
+                            position: absolute;
+                            display: $f;
+                            flex-direction: $co;
+                            justify-content: $sa;
+                            align-items: $c;
+                            padding:5px;
+                            width: 50%;
+                            height: 70%;
+                            border-radius: 8px;
+                            top: 15%;
+                            right: -10%;
+                            transition: 1s;
+
+                            @include d0{
+                                right: -7%;
+                            }
+
+                            @include d1{
+                                width: 45%;
+                                right: -5%;
+                            }
+
+                            @include d3{
+                                width: 50%;
+                            }
+
+                            @include d4{
+                                height: auto;
+                                top: 15%;
+                            }
+
+                            @include d5{
+                                top: 20%;
+                                width: 55%;
+                                right: -8%;
+                            }
+
+                            h3{
+                                color: whitesmoke;
+                                font-size: 1.5em;
+
+                                @include d4{
+                                    font-size: 1em;
+                                }
+
+                                @include d5{
+                                    font-size: .8em;
+                                }
+                            }
+    
+                            p{
+                                color: whitesmoke;
+                                text-align: $c;
+                                font-weight: bold;
+
+                                @include d4{
+                                    padding-top: 15%;
+                                }
+
+                                @include d5{
+                                    font-size: .9em;
+                                }
+                            }
+
+                            i{
+                                background: linear-gradient(346deg, #d4dc3e, #eaf422, #e9af2b, #efd734);
+                                background-size: 800% 800%;
+                                -webkit-animation: anima2 3s ease infinite;
+                                -moz-animation: anima2 3s ease infinite;
+                                animation: anima2 3s ease infinite;
+                                font-size: 3em;
+                                -webkit-background-clip: text;
+                                -webkit-text-fill-color: transparent;
+                                animation: rot 5s infinite;
+
+                                @include d4{
+                                    font-size: 2em;
+                                }
+                            }
+                        }
+
+                        .staticRight1{
+                            background-image: linear-gradient(rgb(230, 219, 72),rgb(170, 121, 16));
+                        }
+
+                        .inter1{
+                            display: $f;
+                            flex-direction: $co;
+                            align-items: flex-start;
+                            justify-content: $c;
+
+                            p{
+                                color: whitesmoke;
+                                text-align: $c;
+                            }
+
+                            .activInter{
+                                width: 50px;
+                                background: orange;
+                                border-radius: 90px;
+                                transition: 0.6s;
+
+                            .togglerInter{
+                                border-radius: 90px;
+
+                                .cirInter{
+                                    background: rgb(248, 248, 248);
+                                    width: 20px;
+                                    height: 20px;
+                                    border-radius: 50%;
+                                    transition: .6s;
+                                }
+
+                                .cirInter1{
+                                    transform: translateX(30px);
+                                    background: whitesmoke;
+                                }
+                            }
+                        }
+                        
+                        .activInter1{
+                            background: lighten(#29b9d3,10%);
+                        }
+                        }
+
+                        .colorChanger{
+                            color: orange;
+                            text-transform: uppercase;
+                            padding: 4% 0%;
+                            text-decoration: none;
+                            text-align: $c;
+                            font-size: 1.2em;
+
+                            @include d5{
+                                font-size: .9em;
+                                padding: 15% 0%;
+                            }
+                        }
+
+                        .colorChanger1{
+                            color: tomato;
+                            font-weight: bold;
+                            font-size: 1.2em;
+                        }
+                    }
+
+                    .inter2{
+                        background: linear-gradient(270deg, #e6d433, #f07b1b, #e93118, #dfc222, #dfb322);
+                        background-size: 1000% 1000%;
+                        //-webkit-animation: anima1 3s ease infinite;
+                        //-moz-animation: anima1 3s ease infinite;
+                       // animation: anima1 3s ease infinite;
+                    }
+                }
+            }
+
+            .rowGet2{
+                margin-top:5em;
+
+                .colGet2{
+
+                    h3{
+                        padding-bottom: 3%;
+
+                        @include d4{
+                            font-size: 1.8em;
+                        }
+                    }
+
+                    form{
+                        
+                        input{
+                            border:3px solid #fb9224;
+                            background-color: #141414;
+                            border-radius:20px;
+                            color:whitesmoke;
+                            padding: 2.5%;
+
+                            &::placeholder {
+                            color: #e6e4e5;
+                            font-weight: bold;
+                          } 
+                        }
+
+                        select{
+                            border:3px solid #fb9224;
+                            background-color: #141414;
+                            border-radius:20px;
+                            color:whitesmoke;
+                            cursor: pointer;
+                            display: $f;
+                            align-items: center;
+                            justify-content: center;
+                            flex-direction: column;
+                            appearance: none;
+                            background-image: url('../images/arrowDown.png');
+                            background-size: 8%;
+                            background-repeat: no-repeat;
+                            background-position: right;
+                            font-weight: bold;
+                        }
+                        
+                        textarea{
+                            border:3px solid #fb9224;
+                            background-color: #141414;
+                            border-radius:10px;
+                            color:whitesmoke;
+                            min-height:200px;
+                            padding: 1% 2%;
+                            resize: none;
+                            
+                            
+                            &::placeholder {
+                                color:#eeeeee;
+                                font-weight: bold;
+                              } 
+                        }
+                        .submitCenter{
+                            display:flex;
+                            justify-content: center;
+
+                            #sub{    
+                                background: #141414;
+                                text-decoration: none;
+                                border: 3px solid #fb9224;
+                                border-radius: 40px;
+                                color: #fb9224;
+                                display: block;
+                                display: $f;
+                                justify-content: $c;
+                                align-items: $c;
+                                width: 40%;
+                                padding: 3%;
+                                transition: .5s;
+                                font-weight: bold;
+                                font-size: 1em;
+
+                                @include d4{
+                                    width: 70%;
+                                }
+                                
+                
+                                &:hover,
+                                &:focus { 
+                                        border-color: transparent;
+                                        color: whitesmoke;
+                                        box-shadow: inset 0 -3.80em 0 0 #fb9224;
+                                }   
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+
+    .poslovi{
+        width: 100%;
+        background: #141414;
+        background-image: url('../images/background2.png');
+        padding-bottom: 15%;
+
+        .contPoslovi{
+
+            h3{
+                margin-top: 0px;
+                padding-top: 10%;
+
+                @include d3{
+                    font-size: 2.3em;
+                }
+
+                @include d4{
+                    font-size: 2em;
+                }
+
+                @include d5{
+                    font-size: 1.7em;
+                }
+            }
+
+            .posloviRow{
+
+                .posloviCol{
+
+                    .holder{
+                        width: 70%;
+                        height: 300px;
+                        overflow: hidden;
+                        position: relative;
+                        margin: 8% auto;
+
+                        @include d1{
+                            width: 80%;
+                        }
+
+                        @include d2{
+                            width: 90%;
+                        }
+
+                        @include d3{
+                            width: 100%;
+                        }
+
+                
+                        .box{
+                            width: 100%;
+                            height: 100%;
+                            background: linear-gradient(to bottom, #FDC830, #F37335);
+                            border-radius: 9px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            position: absolute;
+                            transition: 1s;
+                            
+                
+                
+                            .klaster{
+                                width: 90%;
+                                height: 100%;
+                                position: absolute;
+                                overflow: hidden;
+                                display: flex;
+                                justify-content: space-around;
+                                align-items: center;
+                                transition: 1s;
+                
+                                .left{
+                                    width: 30%;
+                                    height: 70%;
+                                    background: cyan;
+                                    border-radius: 9px;
+
+                                    @include d3{
+                                        width: 25%;
+                                        height: 35%;
+                                    }
+
+                                    @include d4{
+                                        display: none;
+                                    }
+                                }
+                
+                                .mid{
+                                    width: 60%;
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: center;
+                                    align-items: center;
+
+                                    @include d3{
+                                        width: 70%;
+                                    }
+
+                                    h4{
+                                        padding-bottom: 5%;
+                                    }
+
+                                    p{
+                                        text-align: $c;
+                                        padding: 0px;
+                                        
+                                        @include d4{
+                                            display: none;
+                                        }
+                                    }
+
+                                    a{
+                                        display: block;
+                                        text-decoration: none;
+                                        width: 50%;
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        padding: 3% 0%;
+                                        transition: .5s;
+                                        border-radius: 40px;
+                                        border: 4px solid orange;
+                                        color: whitesmoke;
+                                        font-weight: bold;
+
+                                        @include d2{
+                                            width: 65%;
+                                        }
+
+                                        @include d5{
+                                            width: 80%;
+                                        }
+
+                                        &:hover,
+                                        &:focus { 
+                                        border-color: transparent;
+                                        color: whitesmoke;
+                                        box-shadow: inset 0 -3.80em 0 0 #fb9224;
+                                        } 
+                                    }
+                                }
+                            }
+                
+                            .k1{
+                                top: 0px;
+                            }
+                
+                            .k2{
+                                bottom: -300px;
+                            }
+                
+                            .k3{
+                                bottom: -600px;
+                            }
+                
+                            .right{
+                                width: 5%;
+                                height: 100%;
+                                display: flex;
+                                position: absolute;
+                                right: 0px;
+                                justify-content: center;
+                                align-items: center;
+                                flex-direction: column;
+                                background: linear-gradient(346deg, #d4dc3e, #eaf422, #e9af2b, #efd734);
+                                background-size: 800% 800%;
+                                -webkit-animation: anima2 6s ease infinite;
+                                -moz-animation: anima2 6s ease infinite;
+                                animation: anima2 6s ease infinite;
+                                border-top-right-radius: 8px;
+                                border-bottom-right-radius: 8px;
+
+                                @include d4{
+                                    width: 10%;
+                                }
+
+                
+                                a{
+                                    display: block;
+                                    width: 15px;
+                                    height: 15px;
+                                    border-radius: 50%;
+                                    background: rgb(243, 243, 243);
+                                    margin: 15% 0%;
+
+                                    @include d1{
+                                        margin: 30% 0%;
+                                    }
+
+                                    @include d3{
+                                        margin: 50% 0%;
+                                    }
+                                }
+                             
+                                .cu1{
+                                    background: rgb(241, 95, 27);
+                                }
+                
+                            }
+                
+                        }
+                
+                        .klas1{
+                            top: 0px;
+                            bottom: 0px;
+                        }
+                
+                        .klas2{
+                            top: 300px;
+                        }
+                
+                        .klas3{
+                            top: 600px;
+                        }
+                
+                    }
+                }
+            }
+        }
+    }
+
+    .foot{
+        width: 100%;
+        background: #141414;
+        padding-top: 10%;
+        border-top: 4px solid orange;
+
+        .footerCont{
+
+            .rowFooter{
+
+                .colFooter{
+                    display: $f;
+                    flex-direction: $co;
+                    justify-content: $c;
+                    align-items: $c;
+
+                    @include d1{
+                        margin: 5% 0%;
+                    }
+
+                    p{
+                        color: orange;
+                        font-weight: bold;
+                        font-size: 2em;
+                        padding-bottom: 5%;
+                    }
+
+                    ul{
+                        list-style-type: none;
+                        display: $f;
+                        justify-content: $c;
+                        align-items: $c;
+                        flex-direction: $co;
+
+                        li{
+                            margin: 3% 0%;
+
+                            a{
+                                color: whitesmoke;
+                                text-decoration: none;
+                                font-size: 1.3em;
+                                transition: 0.5s;
+
+                                &:hover{
+                                    color: orange;
+                                }
+                            }
+                        }
+                    }
+
+                    form{
+                        width: 90%;
+                        display: $f;
+                        flex-direction: $co;
+                        justify-content: $c;
+                        align-items: $c;
+                        border: none;
+                        
+                        .inpo{
+                            width: 100%;
+                            margin: 2% 0%;
+                            padding: 1%;
+                            border: none;
+                            background: transparent;
+                            border: 4px solid orange;
+                            border-radius: 40px;
+                            color: orange;
+
+                            &::placeholder{
+                                color: whitesmoke;
+                            }
+                        }
+
+                        #area1{
+                            margin: 5% 0%;
+                            resize: none;
+                            width: 100%;
+                            padding: 1%;
+                            border: none;
+                            background: transparent;
+                            border: 4px solid orange;
+                            border-radius: 20px;
+                            color: orange;
+
+                            &::placeholder{
+                                color: whitesmoke;
+                            }
+                        }
+
+                             #subFooter{
+                                        display: block;
+                                        text-decoration: none;
+                                        width: 50%;
+                                        display: flex;
+                                        justify-content: center;
+                                        background: rgba(231, 106, 34, 0.856);
+                                        color: orange;
+                                        align-items: center;
+                                        padding: 3% 0%;
+                                        transition: .5s;
+                                        border: 4px solid orange;
+                                        border-radius: 40px;
+                                        font-weight: bold;
+
+                                        @include d5{
+                                            width: 80%;
+                                        }
+
+                                        &:hover,
+                                        &:focus { 
+                                        border-color: transparent;
+                                        color: whitesmoke;
+                                        box-shadow: inset 0 -3.80em 0 0 #fb9224;
+                                        } 
+                        }
+                    }
+                }
+            }
+
+            .rowFooter1{
+
+                .colFooter1{
+                    display: $f;
+                    justify-content: $c;
+                    align-items: $c;
+                    padding: 5% 0%;
+
+                    p{
+                        font-weight: bold;
+                        color: whitesmoke;
+                        text-align: $c;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+@keyframes anima {
+    0%{background-position:0% 27%}
+    50%{background-position:100% 74%}
+    100%{background-position:0% 27%}
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 #fb9224; }
+  }
+
+  @keyframes uper{
+      0%{transform: translateY(10px);}
+      50%{transform: translateY(-10px);}
+      100%{transform: translateY(10px);}
+  }
+
+  @keyframes anima1 {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+@keyframes anima2 {
+    0%{background-position:29% 0%}
+    50%{background-position:72% 100%}
+    100%{background-position:29% 0%}
+}
+
+@keyframes rot {
+    0%{transform: rotate(0deg);}
+    50%{transform: rotate(360deg);}
+    100%{transform: rotate(0deg);}
+}
+
+//background-image: linear-gradient(315deg, #fb9224 0%,#FD6A33 74%);
